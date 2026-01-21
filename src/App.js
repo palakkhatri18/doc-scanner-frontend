@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "./firebase";
+import Signup from "./auth/Signup";
+import Login from "./auth/Login";
+import Upload from "./components/Upload";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsub();
+  }, []);
+
+  const handleLogout = async () => {
+    await signOut(auth);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: 20 }}>
+      <h1>Doc Scanner App</h1>
+
+      {!user ? (
+        <>
+          <Signup />
+          <hr />
+          <Login />
+        </>
+      ) : (
+        <>
+          <p>Logged in as: {user.email}</p>
+          <button onClick={handleLogout}>Logout</button>
+
+          <Upload user={user} />
+        </>
+      )}
     </div>
   );
 }
