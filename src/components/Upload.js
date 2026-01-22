@@ -4,6 +4,7 @@ import { db } from "../firebase";
 
 const CLOUD_NAME = "dsby4idm9";
 const UPLOAD_PRESET = "doc_scanner_uploads";
+const BACKEND_URL = "https://doc-scanner-backend-ku8a.onrender.com";
 
 function Upload({ user }) {
   const [file, setFile] = useState(null);
@@ -66,24 +67,24 @@ function Upload({ user }) {
       }
 
       // 2️⃣ Send image URL to FastAPI for scanning
-      const scanRes = await fetch("http://127.0.0.1:8000/process", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          image_url: originalUrl,
-        }),
-      });
+const scanRes = await fetch(`${BACKEND_URL}/process`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    image_url: originalUrl,
+  }),
+});
 
-      const scanData = await scanRes.json();
-      console.log("Scan response:", scanData);
+const scanData = await scanRes.json();
 
-      if (!scanData.output_url) {
-        throw new Error("Scanning failed");
-      }
+if (!scanData.output_url) {
+  throw new Error("Scanning failed");
+}
 
-      setScannedImage(scanData.output_url);
+setScannedImage(scanData.output_url);
+
 
       // 3️⃣ Save metadata in Firestore
       await addDoc(collection(db, "uploads"), {
