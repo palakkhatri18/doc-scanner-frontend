@@ -1,5 +1,9 @@
 Doc Scanner App – Frontend : https://doc-scanner-frontend.vercel.app/
 
+The backend for this project is available here:
+https://github.com/palakkhatri18/doc-scanner-backend
+
+
 This repository contains the frontend of the Doc Scanner App, a web application that allows users to:
 
 Sign up and log in securely
