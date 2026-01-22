@@ -1,4 +1,4 @@
-Doc Scanner App – Frontend
+Doc Scanner App – Frontend : https://doc-scanner-frontend.vercel.app/
 
 This repository contains the frontend of the Doc Scanner App, a web application that allows users to:
 
@@ -81,30 +81,6 @@ Performs document scanning
 
 Returns processed image URL
 
-📁 Project Folder Structure
-doc-scanner-frontend/
-│
-├── src/
-│   ├── auth/
-│   │   ├── Auth.js        # Wrapper for Login & Signup
-│   │   ├── Login.js       # Login form
-│   │   ├── Signup.js      # Signup form
-│   │   └── Auth.css       # Auth UI styles
-│   │
-│   ├── components/
-│   │   └── Upload.js      # Upload & scan logic
-│   │
-│   ├── styles/
-│   │   ├── App.css        # Global layout styles
-│   │   └── Upload.css    # Upload component styles
-│   │
-│   ├── firebase.js        # Firebase configuration
-│   ├── App.js             # Main app logic
-│   └── index.js           # React entry point
-│
-├── public/
-├── package.json
-└── README.md
 
 🔐 Authentication Workflow (Signup & Login)
 Why Authentication?
