@@ -1,0 +1,31 @@
+.auth-page {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-card {
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.auth-toggle {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.auth-toggle span {
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.auth-toggle span:hover {
+  text-decoration: underline;
+}

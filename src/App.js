@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "./firebase";
-import Signup from "./auth/Signup";
-import Login from "./auth/Login";
+
+import Auth from "./auth/Auth";
 import Upload from "./components/Upload";
+
+import "./styles/App.css";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -20,23 +22,21 @@ function App() {
   };
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Doc Scanner App</h1>
+    <div className="app-container">
+      {/* Header */}
+      <header className="app-header">
+        <h1 className="app-title">Doc Scanner App</h1>
 
-      {!user ? (
-        <>
-          <Signup />
-          <hr />
-          <Login />
-        </>
-      ) : (
-        <>
-          <p>Logged in as: {user.email}</p>
-          <button onClick={handleLogout}>Logout</button>
+        {user && (
+          <div className="user-bar">
+            <span>{user.email}</span>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        )}
+      </header>
 
-          <Upload user={user} />
-        </>
-      )}
+      {/* Content */}
+      {!user ? <Auth /> : <Upload user={user} />}
     </div>
   );
 }

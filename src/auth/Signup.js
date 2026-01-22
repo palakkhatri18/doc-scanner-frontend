@@ -19,6 +19,7 @@ function Signup() {
 
   return (
     <div>
+
       <h2>Signup</h2>
       <form onSubmit={handleSignup}>
         <input
@@ -41,6 +42,7 @@ function Signup() {
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
+    
   );
 }
 
